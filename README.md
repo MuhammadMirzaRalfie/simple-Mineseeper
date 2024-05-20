@@ -1,4 +1,4 @@
-# simple-Mineseeper
+# simple-Minesweeper
 
 Quiz 2 design & Analysis of Algorithm
 simple-Minesweeper
