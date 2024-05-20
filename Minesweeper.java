@@ -29,3 +29,12 @@ JPanel textPanel = new JPanel();
 JPanel boardPanel = new JPanel();
 
 
+MineSweeper(){
+    frame.setSize(panjangBoard,lebarBoard);
+    frame.setLocationRelativeTo(null);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setLayout(new BorderLayout());
+
+    
+
+}
