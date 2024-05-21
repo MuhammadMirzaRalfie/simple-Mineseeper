@@ -19,7 +19,7 @@ public class Minesweeper {
             this.kolom=kolom;
         }
     }
-}
+
 
 int tileSize = 75;
 int numBaris = 8;
@@ -184,4 +184,5 @@ int countMine(int baris,int kolom){
         return 1 ;
     }
     return 0;
+}
 }
