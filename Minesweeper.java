@@ -40,6 +40,7 @@ Random random = new Random();
 
 int tilesClicked = 0;
 boolean gameOver = false;
+boolean firstClick = false;
 
 Minesweeper(){
     frame.setSize(panjangBoard,lebarBoard);
@@ -75,16 +76,18 @@ Minesweeper(){
                     }
                     MineTile tile = (MineTile) e.getSource();
 
-                    if(e.getButton()== MouseEvent.BUTTON1){
-                        if (tile.getText()==""){
-                            if(mineList.contains(tile)){
-                                revealMines();
-                            }
-                            else{
-                                checkMine(tile.baris,tile.kolom);
-                            }
+                    if (e.getButton() == MouseEvent.BUTTON1) {
+                        if (!firstClick) {
+                            firstClick = true;
+                            setMines(tile.baris, tile.kolom);
                         }
-                    }
+                        if (tile.getText().isEmpty()) {
+                            if (mineList.contains(tile)) {
+                                revealMines();
+                            } else {
+                                checkMine(tile.baris, tile.kolom);
+                            }
+                        }}
                     else if (e.getButton()==MouseEvent.BUTTON3){
                         if(tile.getText()==""&& tile.isEnabled()){
                             tile.setText("🚩");
@@ -100,18 +103,19 @@ Minesweeper(){
         }
     }
     frame.setVisible(true);
-   setMines();
+   
 }
-void setMines(){
-    mineList =new ArrayList<MineTile>();
-
+void setMines(int firstRow, int firstCol){
+    mineList =new ArrayList<>();
     int mineLeft = mineCount;
+
+
     while(mineLeft>0){
         int baris=random.nextInt(numBaris);
         int kolom=random.nextInt(numKolom);
 
         MineTile tile = board[baris][kolom];
-        if (!mineList.contains(tile)){
+        if (!mineList.contains(tile) && !(baris == firstRow && kolom == firstCol)) {
             mineList.add(tile);
             mineLeft -=1;
         }
@@ -184,5 +188,8 @@ int countMine(int baris,int kolom){
         return 1 ;
     }
     return 0;
+}
+public static void main(String[] args) {
+    new Minesweeper();
 }
 }
