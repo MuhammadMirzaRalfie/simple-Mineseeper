@@ -100,5 +100,30 @@ MineSweeper(){
         }
     }
     frame.setVisible(true);
-   
+   setMines();
+}
+void setMines(){
+    mineList =new ArrayList<MineTile>();
+
+    int mineLeft = mineCount;
+    while(mineLeft>0){
+        int baris=random.nextInt(numBaris);
+        int kolom=random.nextInt(numKolom);
+
+        MineTile tile = board[baris][kolom];
+        if (!mineList.contains(tile)){
+            mineList.add(tile);
+            mineLeft -=1;
+        }
+    }
+}
+
+void revealMines(){
+    for (int i=0;i<mineList.size();i++){
+        MineTile tile = mineList.get(i);
+        tile.setText("💣");
+    }
+    gameOver=true;
+    textLabel.setText("kalaaah!");
+
 }
