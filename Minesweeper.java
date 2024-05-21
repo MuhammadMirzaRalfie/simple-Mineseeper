@@ -41,7 +41,7 @@ Random random = new Random();
 int tilesClicked = 0;
 boolean gameOver = false;
 
-MineSweeper(){
+Minesweeper(){
     frame.setSize(panjangBoard,lebarBoard);
     frame.setLocationRelativeTo(null);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,4 +126,62 @@ void revealMines(){
     gameOver=true;
     textLabel.setText("kalaaah!");
 
+}
+void checkMine(int baris , int kolom){
+    if (baris<0 || baris>= numBaris || kolom<0||kolom>=numKolom){
+        return;
+
+    }
+    MineTile tile = board[baris][kolom];
+    if(!tile.isEnabled()){
+        return;
+    }
+
+    tile.setEnabled(false);
+    tilesClicked +=1;
+    int minesFound =0;
+
+    minesFound += countMine(baris-1,kolom -1);
+    minesFound += countMine(baris -1, kolom);
+    minesFound += countMine(baris-1, kolom+1);
+
+    minesFound += countMine(baris,kolom-1);
+    minesFound +=countMine(baris, kolom+1);
+
+    minesFound += countMine(baris+1, kolom-1);
+    minesFound += countMine(baris+1, kolom);
+    minesFound+= countMine(baris+1,kolom+1);
+
+    if(minesFound > 0){
+        tile.setText(Integer.toString(minesFound));
+
+    }
+    else{
+        tile.setText("");
+
+        checkMine(baris-1, kolom-1);
+        checkMine(baris-1, kolom);
+        checkMine(baris, kolom+1);
+
+        checkMine(baris, kolom-1);
+        checkMine(baris, kolom+1);
+
+        checkMine(baris+1,kolom-1);
+        checkMine(baris+1,kolom);
+        checkMine(baris+1,kolom+1);
+        
+    }
+    if (tilesClicked == numBaris * numKolom -mineList.size()){
+        gameOver=true;
+        textLabel.setText("ranjau berhasil di bersihkan");
+    }
+}
+int countMine(int baris,int kolom){
+    if(baris<0 || baris>=numBaris||kolom<0|| kolom>=numKolom){
+        return 0;
+    }
+    if(mineList.contains(board[baris][kolom])){
+        return 1 ;
+    }
+    return 0;
 }
