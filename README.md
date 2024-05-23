@@ -5,8 +5,8 @@ simple-Minesweeper
 
 By :
 Muhammad Mirza Ralfie Prasetyo (5025221220) <br>
-Alvin jauhari <br>
-Azizah <br>
+Ahmad Alvin jauhari (5025221180) <br>
+Azizah Elok Harvianti (5025221243) <br>
 
 ## how to run?
 1. clone repository dengan code berikut:
