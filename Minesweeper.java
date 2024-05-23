@@ -41,18 +41,21 @@ public class Minesweeper {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        frame.setBackground(Color.green);
 
         textLabel.setFont(new Font("Arial", Font.BOLD, 25));
         textLabel.setHorizontalAlignment(JLabel.CENTER);
         textLabel.setText("Minesweeper: " + Integer.toString(mineCount));
+        textLabel.setBackground(Color.yellow);
         textLabel.setOpaque(true);
 
         textPanel.setLayout(new BorderLayout());
         textPanel.add(textLabel);
+        textPanel.setBackground(Color.BLACK);
         frame.add(textPanel, BorderLayout.NORTH);
 
         boardPanel.setLayout(new GridLayout(numRows, numCols)); //8x8
-        // boardPanel.setBackground(Color.green);
+        boardPanel.setBackground(Color.RED);
         frame.add(boardPanel);
 
         for (int r = 0; r < numRows; r++) {
@@ -202,4 +205,5 @@ public class Minesweeper {
     }
 }
 
+alvin <3 634
 
